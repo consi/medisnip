@@ -17,7 +17,7 @@ coloredlogs.install(level="INFO")
 log = logging.getLogger("main")
 
 class MediSnip(object):
-    MEDICOVER_API = "https://api.medicover.pl/MOB/MOB.WebServices/Service.svc/basic?singleWsedl"
+    MEDICOVER_API = "https://api.medicover.pl/MOB/MOB.WebServices/Service.svc/basic?singleWsdl"
     def __init__(self, configuration_file="medisnip.yaml"):
         #Setup logger
         self.log = logging.getLogger("medisnip")
