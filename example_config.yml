@@ -1,0 +1,13 @@
+medicover:
+  card_id: 1234567 # Medicover MRN (your card number)
+  password: change.me # Medicover account password
+medisnip:
+  doctor_locator_id: 123-1234-12345-123456 # Unique identificator of specialist. Can be obtained by running ./medisnip.py -l - beware - listing is slow
+  lookup_time_days: 25 # How many days from now should script look at.
+pushover:
+  user_key: PUSHOVER_USER_KEY # Your pushover.net user key
+  api_token: API_TOKEN # pushover.net App API Token
+  message_template: "New visit! {AppointmentDate} at {ClinicPublicName} - {DoctorName} ({SpecialtyName})" # Message template, available fields: SpecialtyId ClinicId VendorTypeId ClinicName EndTime HiddenSlot ErrorText ErrorCode DateStartTime VendorTypeCd OARule ClinicPublicName SpecialtyName SysVisitTypeId DoctorLanguages LinkedReferralId DoctorName ConsultationRoomId Position DebugData DoctorScheduleId AppointmentDate ScheduleDate DoctorId ServiceId StartTime Duration
+  title: "New visit available!" # Pushover message topic
+misc:
+  notifydb: ./surgeon_data.db # State file used to remember which notifications has been sent already

@@ -1,0 +1,4 @@
+zeep
+pyyaml
+coloredlogs
+python-pushover
