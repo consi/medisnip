@@ -37,7 +37,10 @@ class MediSnip(object):
             self.config = yaml.load(config_data)
         except Exception as yaml_error:
             raise Exception('Configuration problem: {error}'.format(error=yaml_error))
-        self.medicover = zeep.Client(self.MEDICOVER_API)
+        transport = zeep.Transport()
+        transport.session.headers[
+            'User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
+        self.medicover = zeep.Client(self.MEDICOVER_API, transport=transport)
         self.mol = self.medicover.service
         self.log.info("MediSnip client initialized")
         #Try to login to MOL Service
@@ -111,7 +114,7 @@ class MediSnip(object):
                                     ))
     def check_slots(self):
         try:
-            (region_id, specialty_id, clinic_id, doctor_id) = self.config['medisnip']['doctor_locator_id'].strip().split('-')
+            (region_id, specialty_id, clinic_id, doctor_id) = self.config['medisnip']['doctor_locator_id'].strip().split('*')
         except ValueError:
             raise Exception('DoctorLocatorID seems to be in invalid format')
         self.log.info("Searching for appointments.")
