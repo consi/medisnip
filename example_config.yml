@@ -2,7 +2,9 @@ medicover:
   card_id: 1234567 # Medicover MRN (your card number)
   password: change.me # Medicover account password
 medisnip:
-  doctor_locator_id: 123-1234-12345-123456 # Unique identificator of specialist. Can be obtained by running ./medisnip.py -l - beware - listing is slow
+  doctor_locator_id: 123*1234*12345*123456 # Unique identificator pattern (region_id*specialty_id*clinic_id*doctor_id) of specialist. Can be obtained by running ./medisnip.py -l - beware - listing is slow
+  # or by link https://mol.medicover.pl/MyVisits?regionId=205&bookingTypeId=2&specializationId=192&serviceId=&clinicId=-1&languageId=-1&doctorId=-1
+  # -1 means (Any)
   lookup_time_days: 25 # How many days from now should script look at.
 pushover:
   user_key: PUSHOVER_USER_KEY # Your pushover.net user key
