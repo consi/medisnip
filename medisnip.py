@@ -149,7 +149,7 @@ class MediSnip(object):
 
     def _notify(self, data, message):
         state = shelve.open(self.config['misc']['notifydb'])
-        notifications = state.get(self.config['medisnip']['doctor_locator_id'], [])
+        notifications = state.get(str(data['DoctorId']), [])
         if not data['AppointmentDate'] in notifications:
             notifications.append(data['AppointmentDate'])
             self.log.info(u'Sending notification: {}'.format(message))
@@ -157,7 +157,7 @@ class MediSnip(object):
             pushover.Client(self.config['pushover']['user_key']).send_message(message, title=self.config['pushover']['title'])
         else:
             self.log.info('Notification was already sent.')
-        state[self.config['medisnip']['doctor_locator_id']]=notifications
+        state[str(data['DoctorId'])] = notifications
         state.close()
                     
 if __name__=="__main__":
